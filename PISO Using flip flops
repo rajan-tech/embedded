@@ -1,0 +1,37 @@
+library ieee;
+use ieee.std_logic_1164.all;
+--4 bit Parallel In Serial Out shift register(LSB is out first)
+entity PISO is
+port ( Serial_out : out std_logic;
+       Parallel_In : in std_logic_vector(3 downto 0);
+       --Load=1 means register is loaded parallely and Load=0 means right shift by one bit.
+       Load : in std_logic; 
+       Clk : in std_logic
+     );
+end PISO;
+architecture gate_level of PISO is
+signal D,Q,Load_value : std_logic_vector(3 downto 0):="0000";
+signal i : integer := 0;
+begin
+Load_value <= Parallel_In;
+Serial_out <= Q(3);
+
+--entity instantiation of the D flipflop using "generate".
+F :  --label name
+   for i in 0 to 3 generate   --D FF is instantiated 4 times.
+    begin  --"begin" statement for "generate"
+        FDRSE_inst : entity work.example_FDRSE port map   --usual port mapping
+          (Q => Q(i),
+          CLK => Clk,
+          CE => '1',
+          RESET => '0',
+          D => D(i),
+          SET => '0');
+   end generate F;  --end "generate" block.
+--The D inputs of the flip flops are controlled with the load input.
+--Two AND gates with a OR gate is used for this.
+D(0) <= Load_value(3) and Load;
+D(1) <= (Load_value(2) and Load) or (Q(0) and not(Load));
+D(2) <= (Load_value(1) and Load) or (Q(1) and not(Load));
+D(3) <= (Load_value(0) and Load) or (Q(2) and not(Load));
+end gate_level; 
