@@ -15,8 +15,8 @@ entity example_FDRSE is
 end example_FDRSE;
 architecture Behavioral of example_FDRSE is  --architecture of the circuit.
 begin  --"begin" statement for architecture.
-process(CLK) --process with sensitivity list.
-begin  --"begin" statment for the process.
+process(CLK) --process with sensitivity list
+begin  --"begin" statment for the process
   if ( rising_edge(CLK) ) then  --This makes the process synchronous(with clock)
     if (RESET = '1') then
          Q <= '0';
