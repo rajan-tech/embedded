@@ -9,6 +9,7 @@ port (clk1 : in std_logic;
       minutes : out std_logic_vector(5 downto 0);
       hours : out std_logic_vector(4 downto 0)
      );
+     
 end digi_clk;
 
 architecture Behavioral of digi_clk is
