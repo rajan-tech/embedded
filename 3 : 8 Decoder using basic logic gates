@@ -7,6 +7,8 @@ port(    input :        in std_logic_vector(2 downto 0);  --3 bit input
             output : out std_logic_vector(7 downto 0)  -- 8 bit ouput
    );
 end decoder;
+
+
 --architecture of entity
 architecture Behavioral of decoder is
 
