@@ -9,6 +9,7 @@ port ( Serial_out : out std_logic;
        Clk : in std_logic
      );
 end PISO;
+
 architecture gate_level of PISO is
 signal D,Q,Load_value : std_logic_vector(3 downto 0):="0000";
 signal i : integer := 0;
