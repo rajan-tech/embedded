@@ -23,3 +23,4 @@ output(6) <= input(2) and input(1) and (not input(0));
 output(7) <= input(2) and input(1) and input(0);
 
 end Behavioral;
+
